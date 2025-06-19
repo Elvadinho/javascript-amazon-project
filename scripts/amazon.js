@@ -59,6 +59,7 @@ products.forEach((product) => {
 });
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+displayCart();
 
 function addedMessage(productId){
   const added = document.querySelector(`.js-added-to-cart-${productId}`);
