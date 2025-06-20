@@ -77,7 +77,7 @@ function displayCart(){
   cart.forEach((item) => {
     cartQuantity += item.quantity;
   });
-
+  cartQuantity = Number(cartQuantity);
   document.querySelector('.js-cart-quantity').textContent = cartQuantity;
 }
 
