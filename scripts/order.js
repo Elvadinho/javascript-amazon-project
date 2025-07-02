@@ -1,11 +1,11 @@
-import { getProduct } from "../data/products.js";
+import { getProduct, loadProductsFetch } from "../data/products.js";
 import { orders } from "../data/orders.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { formatCurrency } from "./utils/money.js";
-import { addToCart } from "../data/cart.js";
+import { addToCart, cart } from "../data/cart.js";
 
 async function loadPage() {
-  // await loadProductsFetch();
+  await loadProductsFetch();
 
   let ordersHTML = "";
 
@@ -79,6 +79,7 @@ async function loadPage() {
   }
 
   document.querySelector(".js-orders-grid").innerHTML = ordersHTML;
+
   document.querySelectorAll(".js-buy-again").forEach((button) => {
     button.addEventListener("click", () => {
       addToCart(button.dataset.productId);
@@ -97,3 +98,16 @@ async function loadPage() {
 }
 
 loadPage();
+displayCartNum();
+
+function displayCartNum() {
+  let cartQuantity = 0;
+
+  cart.forEach((item) => {
+    item.quantity = Number(item.quantity);
+    cartQuantity += item.quantity;
+  });
+
+  cartQuantity = Number(cartQuantity);
+  document.querySelector(".js-cart-quantity").textContent = cartQuantity;
+}
