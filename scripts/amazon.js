@@ -1,8 +1,8 @@
-import { cart, addTocart } from '../data/cart.js';
-import { products } from '../data/products.js';
-import { formatCurrency } from './utils/money.js';
+import { cart, addToCart } from "../data/cart.js";
+import { products } from "../data/products.js";
+import { formatCurrency } from "./utils/money.js";
 
-let productsHTML = '';
+let productsHTML = "";
 
 products.forEach((product) => {
   productsHTML += `
@@ -58,33 +58,33 @@ products.forEach((product) => {
   `;
 });
 
-document.querySelector('.js-products-grid').innerHTML = productsHTML;
+document.querySelector(".js-products-grid").innerHTML = productsHTML;
 displayCart();
 
-function addedMessage(productId){
+function addedMessage(productId) {
   const added = document.querySelector(`.js-added-to-cart-${productId}`);
 
   added.classList.add("js-added-to-cart");
-  
-  setTimeout( () => {
+
+  setTimeout(() => {
     added.classList.remove("js-added-to-cart");
   }, 2000);
 }
 
-function displayCart(){
+function displayCart() {
   let cartQuantity = 0;
 
   cart.forEach((item) => {
     cartQuantity += item.quantity;
   });
   cartQuantity = Number(cartQuantity);
-  document.querySelector('.js-cart-quantity').textContent = cartQuantity;
+  document.querySelector(".js-cart-quantity").textContent = cartQuantity;
 }
 
-document.querySelectorAll('.js-add-to-cart').forEach((button) => {
-  button.addEventListener('click', () => {
+document.querySelectorAll(".js-add-to-cart").forEach((button) => {
+  button.addEventListener("click", () => {
     const productId = button.dataset.productId;
-    addTocart(productId);
+    addToCart(productId);
     displayCart();
     addedMessage(productId);
   });

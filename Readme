@@ -1,2 +1,0 @@
-1. To the update link in checkout.js, create a function to take a range of product eg >= 0 and < 10
-2. Add keyboard support to save link
