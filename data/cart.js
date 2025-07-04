@@ -10,10 +10,12 @@ export function saveToStorage() {
 
 export function addToCart(productId) {
   let matchingItem;
-  let qty;
+  let qty = 1;
 
   const select = document.querySelector(`.js-quantity-selector-${productId}`);
-  qty = Number(select.value);
+  if (select) {
+    qty = Number(select.value);
+  }
 
   cart.forEach((item) => {
     if (productId === item.productId) {

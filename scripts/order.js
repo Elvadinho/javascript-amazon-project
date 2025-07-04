@@ -2,7 +2,7 @@ import { getProduct, loadProductsFetch } from "../data/products.js";
 import { orders } from "../data/orders.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { formatCurrency } from "./utils/money.js";
-import { addToCart, cart } from "../data/cart.js";
+import { addToCart, cart, saveToStorage } from "../data/cart.js";
 
 async function loadPage() {
   await loadProductsFetch();
@@ -83,6 +83,7 @@ async function loadPage() {
   document.querySelectorAll(".js-buy-again").forEach((button) => {
     button.addEventListener("click", () => {
       addToCart(button.dataset.productId);
+      displayCartNum();
 
       // (Optional) display a message that the product was added,
       // then change it back after a second.
